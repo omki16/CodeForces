@@ -1,54 +1,40 @@
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
 
-int main()
+bool compare(int a, int b)
 {
-    int t;
-    cin >> t;
-    while (t--)
+
+    if ((a%2 == 0 && b%2 == 0) || (a%2 != 0 && b%2 != 0))
     {
-        long long n;
-        cin >> n;
-        long long a[n];
-        for (int i = 0; i < n; i++)
-            cin >> a[i];
-
-        int count1 = 0;
-        int element1 = a[0];
-        int element2 = -1;
-        int count2 = 0;
-        bool ok = true;  
-
-        for (int i = 0; i < n; i++)
-        {
-            if (element1 == a[i])
-            {
-                count1++;
-            }
-            else if (element2 == a[i] || element2 == -1)
-            {
-                element2 = a[i];
-                count2++;
-            }
-            else
-            {
-                ok = false;
-                break;
-            }
-        }
-
-        if (!ok)
-        {
-            cout << "NO" << endl;
-            continue; 
-        }
-
-        int ans = count1 - count2;
-        if (ans == 1 || ans == -1 || ans == 0 || ans == n)
-            cout << "YES" << endl;
-        else
-            cout << "NO" << endl;
+        return true;
     }
-    return 0;
+    
+    return false;
 }
 
+int main(int argc, char const *argv[])
+{
+    int no_of_cases;
+    cin >> no_of_cases;
+    for (int i = 0; i < no_of_cases; i++)
+    {
+        int length;
+        cin >> length;
+        int arr[length];
+        for (int j = 0; j < length; j++)
+        {
+            cin >> arr[j];
+        }
+        int count = 0;
+        for (int i = 0; i < length -1; i++)
+        {
+            if (compare(arr[i],arr[i+1]))
+            {
+                count++;
+            }
+        }
+        cout << count << endl;
+    }
+    
+    return 0;
+}
